@@ -1,9 +1,11 @@
 import { motion, AnimatePresence } from 'framer-motion'
 import { useState, useEffect, useCallback } from 'react'
+import PragueMap from './PragueMap'
 
 const SLIDES = [
     'intro',
     'photos',
+    'map',
     'pillars',
     'ecology',
     'city',
@@ -139,8 +141,33 @@ export default function Presentation() {
                     </Slide>
                 )}
 
-                {/* SLIDE 3: THREE PILLARS - overview */}
+                {/* SLIDE 3: MAP */}
                 {currentSlide === 2 && (
+                    <div key="map" className="h-screen w-screen relative">
+                        <PragueMap />
+                        {/* Navigation overlay for map slide */}
+                        <div className="absolute bottom-8 right-8 z-[2000] flex gap-4">
+                            <button
+                                onClick={goPrev}
+                                className="w-12 h-12 border-2 border-black bg-white flex items-center justify-center text-2xl hover:bg-black hover:text-white transition-all cursor-pointer"
+                            >
+                                ←
+                            </button>
+                            <button
+                                onClick={goNext}
+                                className="w-12 h-12 border-2 border-black bg-white flex items-center justify-center text-2xl hover:bg-black hover:text-white transition-all cursor-pointer"
+                            >
+                                →
+                            </button>
+                        </div>
+                        <div className="absolute bottom-8 left-8 z-[2000] text-sm text-black/40 bg-white px-2 py-1">
+                            {currentSlide + 1} / {SLIDES.length}
+                        </div>
+                    </div>
+                )}
+
+                {/* SLIDE 4: THREE PILLARS - overview */}
+                {currentSlide === 3 && (
                     <Slide key="pillars" dark>
                         <p className="text-sm tracking-widest text-white/40 mb-6">THEORETICAL FRAMEWORK</p>
                         <h2 className="text-4xl md:text-6xl font-bold mb-12">Three Pillars</h2>
@@ -191,8 +218,8 @@ export default function Presentation() {
                     </Slide>
                 )}
 
-                {/* SLIDE 4: ATTENTION ECOLOGY */}
-                {currentSlide === 3 && (
+                {/* SLIDE 5: ATTENTION ECOLOGY */}
+                {currentSlide === 4 && (
                     <Slide key="ecology">
                         <img
                             src={`${import.meta.env.BASE_URL}badges/badge-1.png`}
@@ -205,8 +232,8 @@ export default function Presentation() {
                     </Slide>
                 )}
 
-                {/* SLIDE 5: RIGHT TO THE CITY */}
-                {currentSlide === 4 && (
+                {/* SLIDE 6: RIGHT TO THE CITY */}
+                {currentSlide === 5 && (
                     <Slide key="city" dark>
                         <img
                             src={`${import.meta.env.BASE_URL}badges/badge-2.png`}
@@ -219,8 +246,8 @@ export default function Presentation() {
                     </Slide>
                 )}
 
-                {/* SLIDE 6: DÉTOURNEMENT */}
-                {currentSlide === 5 && (
+                {/* SLIDE 7: DÉTOURNEMENT */}
+                {currentSlide === 6 && (
                     <Slide key="detournement">
                         <img
                             src={`${import.meta.env.BASE_URL}badges/badge-3.png`}
@@ -233,8 +260,8 @@ export default function Presentation() {
                     </Slide>
                 )}
 
-                {/* SLIDE 7: TWO MODES */}
-                {currentSlide === 6 && (
+                {/* SLIDE 8: TWO MODES */}
+                {currentSlide === 7 && (
                     <Slide key="modes" dark>
                         <p className="text-sm tracking-widest text-white/40 mb-6">GAME DESIGN</p>
                         <h2 className="text-4xl md:text-6xl font-bold mb-12">Two Modes</h2>
@@ -289,8 +316,8 @@ export default function Presentation() {
                     </Slide>
                 )}
 
-                {/* SLIDE 8: PREDECESSORS */}
-                {currentSlide === 7 && (
+                {/* SLIDE 9: PREDECESSORS */}
+                {currentSlide === 8 && (
                     <Slide key="predecessors">
                         <p className="text-sm tracking-widest text-black/40 mb-6">INSPIRATION</p>
                         <h2 className="text-4xl md:text-5xl font-bold text-black mb-12">Predecessors</h2>
@@ -325,8 +352,8 @@ export default function Presentation() {
                     </Slide>
                 )}
 
-                {/* SLIDE 9: PRIVACY-FIRST */}
-                {currentSlide === 8 && (
+                {/* SLIDE 10: PRIVACY-FIRST */}
+                {currentSlide === 9 && (
                     <Slide key="privacy" dark>
                         <p className="text-sm tracking-widest text-white/40 mb-6">DESIGN</p>
                         <h2 className="text-4xl md:text-6xl font-bold mb-12">Privacy-first</h2>
@@ -374,8 +401,8 @@ export default function Presentation() {
                     </Slide>
                 )}
 
-                {/* SLIDE 10: DEMO */}
-                {currentSlide === 9 && (
+                {/* SLIDE 11: DEMO */}
+                {currentSlide === 10 && (
                     <Slide key="demo">
                         <p className="text-sm tracking-widest text-black/40 mb-4">DEMO</p>
                         <h2 className="text-3xl md:text-4xl font-bold text-black mb-8">Scan Me</h2>
@@ -393,8 +420,8 @@ export default function Presentation() {
                     </Slide>
                 )}
 
-                {/* SLIDE 11: ANIFILM */}
-                {currentSlide === 10 && (
+                {/* SLIDE 12: ANIFILM */}
+                {currentSlide === 11 && (
                     <Slide key="anifilm">
                         <h2 className="text-3xl md:text-5xl font-bold text-black mb-2">Anifilm 2026</h2>
                         <p className="text-black/40 mb-8">March 2026 • Liberec</p>
@@ -424,8 +451,8 @@ export default function Presentation() {
                     </Slide>
                 )}
 
-                {/* SLIDE 12: QUESTIONS */}
-                {currentSlide === 11 && (
+                {/* SLIDE 13: QUESTIONS */}
+                {currentSlide === 12 && (
                     <Slide key="questions" dark>
                         <p className="text-sm tracking-widest text-white/40 mb-6">DISCUSSION</p>
                         <h2 className="text-4xl md:text-6xl font-bold mb-12">Questions?</h2>
